@@ -419,8 +419,8 @@ imputed &lt;- act
 # na index bool vector
 isna &lt;- is.na(act$steps)
 
-avg &lt;- tapply(full$steps, full$interval, mean, na.rm=TRUE, simplify=T)
-
+# imputing strategy: fill na values with average steps values of the same interval
+avg &lt;- tapply(full$steps, full$interval, mean, na.rm=T, simplify=T)
 imputed$steps[isna] &lt;- avg[as.character(imputed$interval[isna])]
 
 # steps per day imputed
